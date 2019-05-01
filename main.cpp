@@ -62,7 +62,7 @@ int main() {
     std::cout << "\nlucky number is: " << *luckyNumber << std::endl;
 
     // Demonstrate use of count algorithm (See C++ Interlude 6)
-    std::cout << "luck number count is: " << std::count(idsList.begin(), idsList.end(), *luckyNumber) << std::endl;
+    std::cout << "lucky number count is: " << std::count(idsList.begin(), idsList.end(), *luckyNumber) << std::endl;
 
     std::vector<int> numbers;
     int srcNumber;
@@ -80,14 +80,24 @@ int main() {
     }
 
     // TODO: Using vector<int>::iterator, navigate through the numbers vector to create a LinkedList of prime numbers contained in srcData; name your list primesList
+    LinkedList<int> primesList;
+    std::vector<int>::iterator primesItr = numbers.begin();
+    int count = 1;
 
+    while (primesItr != numbers.end()) {
+        if(isPrime(*primesItr)){
+            primesList.insert(count,*primesItr);
+            ++count;
+        }
+        ++primesItr;
+    }
 
     // DO NOT MODIFY THE NEXT LINE
     destData << "Primes: ";
     // DO NOT MODIFY THE ABOVE LINE
 
     // TODO: Using the LinkedIterators from your primesList and the writeOneItem function, write out the prime numbers using the std::for_each() function (see Interlude 6)
-
+    std::for_each(primesList.begin(), primesList.end(), writeOneItem);
     srcData.close();
     destData.close();
 
